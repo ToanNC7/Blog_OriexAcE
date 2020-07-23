@@ -1,7 +1,5 @@
 package vn.com.oriexace.repository;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,7 +13,9 @@ import vn.com.oriexace.entity.Category;
 public interface CategoryReposytory extends JpaRepository<Category, Long> {
 	
 	@Query(" SELECT ca FROM Category ca WHERE ca.name LIKE %:name% ")
-	List<Category> findAllCategory(@Param("name") String name);
+	Page<Category> findAllCategory(Pageable pageable, @Param("name") String name);
 	
+	@Query(" SELECT ca FROM Category ca WHERE ca.id = :id ")
+	Category findOneCategoryById(@Param("id") Long id);
 	
 }

@@ -1,25 +1,82 @@
 package vn.com.oriexace.service.impl;
 
-import java.util.List;
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.oriexace.common.Helper;
 import vn.com.oriexace.entity.Category;
 import vn.com.oriexace.repository.CategoryReposytory;
 import vn.com.oriexace.service.CategoryService;
+import vn.com.oriexace.service.mess.CategoryMess;
 
 @Service
+
 public class CategoryServiceImpl implements CategoryService {
 
-	
 	@Autowired
 	private CategoryReposytory categoryRepository;
 
-	@Transactional(readOnly = true)
-	public List<Category> getAllCategorys(String name) {	
-		return categoryRepository.findAllCategory(name);
+	@Override
+	@Transactional
+	public void saveAndUpdate(HttpServletRequest request, Principal principal) {
+		Category category = new Category();
+		
+		category.setId((request.getParameter("id") == null) ? null : Long.parseLong(request.getParameter("id")));
+		
+		category.setName(request.getParameter("name"));
+		category.setUrl(Helper.pathVariableString(request.getParameter("name")));
+		category.setDescription(request.getParameter("description"));
+		category.setLocked((request.getParameter("id") == null) ? false : Boolean.parseBoolean(request.getParameter("locked")));
+		
+		System.out.println(Boolean.parseBoolean(request.getParameter("locked")));
+		category.setCreatedBy((request.getParameter("id") == null) ? principal.getName() : null);
+		category.setUpdatedBy((request.getParameter("id") != null) ? null : principal.getName());
+
+		// save or update category
+		categoryRepository.save(category);
+
+	}
+	@Override
+	@Transactional
+	public CategoryMess getAllCategorys(Integer pageNo, Integer pageSize, String name, String sortType, String sortBy) {
+
+		Pageable pageable = null;
+
+		if (sortType.equals("ASC")) {
+			pageable = PageRequest.of(pageNo - 1, pageSize, Sort.by(Direction.ASC, sortBy));
+		} else if (sortType.equals("DESC")) {
+			pageable = PageRequest.of(pageNo - 1, pageSize, Sort.by(Direction.DESC, sortBy));
+		}
+		Page<Category> enties = categoryRepository.findAllCategory(pageable, name);
+
+		CategoryMess categoryMess = new CategoryMess();
+		categoryMess.setMessage("");
+		categoryMess.setTotalCategorys(enties.getTotalElements());
+		categoryMess.setListCategorys(enties.getContent());
+
+		return categoryMess;
+		
+	}
+
+	@Override
+	@Transactional
+	public Category getOneCategoryById(HttpServletRequest request) {
+		return categoryRepository.findOneCategoryById(Long.parseLong(request.getParameter("id")));
+	}
+	@Override
+	@Transactional
+	public void deleteCategory(HttpServletRequest request) {
+		categoryRepository.deleteById(Long.parseLong(request.getParameter("id")));
 	}
 
 }

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller(value = "HomeControllerOfAdmin")
 public class HomeController {
+	
+	
+	
 	@GetMapping(value = { "/quan-tri" })
 	public String homePage(Model model, Principal principal) {
 		String userName = principal.getName();

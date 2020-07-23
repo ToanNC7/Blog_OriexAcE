@@ -6,255 +6,224 @@
 <head>
 <meta charset="utf-8">
 <title>Quản trị - Category</title>
+<style>
+.example-modal .modal {
+	position: relative;
+	top: auto;
+	bottom: auto;
+	right: auto;
+	left: auto;
+	display: block;
+	z-index: 1;
+}
+
+.example-modal .modal {
+	background: transparent !important;
+}
+</style>
 </head>
 <body>
-	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header">Quản lý danh mục thể loại</h1>
-		</div>
-		<!-- /.col-lg-12 -->
-	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<c:if test="${not empty sessionScope.tenTheLoai}">
-						<div class="alert alert-danger alert-dismissible">
-							<button type="button" class="close" data-dismiss="alert"
-								aria-hidden="true">×</button>
-							<c:forEach var="tr" items="${sessionScope.tenTheLoai}">
-                                	 Đã xóa thể loại:
-                                	  ${sessionScope.tenTheLoai}.
-                                </c:forEach>
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>
+			Category <small>quản lý category</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="#">Quản lý</a></li>
+			<li class="active">Category</li>
+		</ol>
+	</section>
 
-						</div>
-					</c:if>
-					<c:if test="${sessionScope.mess == true}">
-						<div class="alert alert-info alert-dismissible">
-							<button type="button" class="close" data-dismiss="alert"
-								aria-hidden="true">×</button>
-							Cập nhật thông tin ${tenTheLoaiMoi } thành công !
-						</div>
-					</c:if>
-					<c:if test="${sessionScope.mess == false}">
-						<div class="alert alert-warning alert-dismissible">
-							<button type="button" class="close" data-dismiss="alert"
-								aria-hidden="true">×</button>
-							Cập nhật thông tin thành công ! <br> Xin kiểm tra lại thông
-							tin của thể loại muốn sửa.
-						</div>
-					</c:if>
-					<c:if test="${not empty sessionScope.tacVu}">
 
-						<div class="alert ${sessionScope.tacVu.css} alert-dismissible">
-							<button type="button" class="close" data-dismiss="alert"
-								aria-hidden="true">×</button>
-							${sessionScope.tacVu.trangThai}.
-						</div>
-					</c:if>
-					<c:if test="${not empty sessionScope.tuKhoa}">
-						<div class="alert alert-info alert-dismissible">
-							<button type="button" class="close" data-dismiss="alert"
-								aria-hidden="true">×</button>
-							Kết quả tìm kiếm cho từ khóa ${sessionScope.tuKhoa}:
-						</div>
-					</c:if>
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box box-default">
+					<div class="box-body">
+						
+							<div class="alert alert-danger alert-dismissible">
+								<button type="button" class="close" data-dismiss="alert"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="fa fa-close"></i> Xóa thành công :
+								</h4>
+								 ${tenTheloai}
+							</div>
+						
+					</div>
+					
 
-					<%
-						request.getSession().removeAttribute("tenTheLoai");
-						request.getSession().removeAttribute("mess");
-						request.getSession().removeAttribute("tenTheLoaiMoi");
-						request.getSession().removeAttribute("tacVu");
-						request.getSession().removeAttribute("tuKhoa");
-					%>
+
+					<div class="box-body">
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#themTheLoaiMoi">Thêm Category</button>
+
+					</div>
 				</div>
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover"
-							border="0">
-							<tbody>
+			</div>
+		</div>
+
+		<div class="modal fade" id="themTheLoaiMoi">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">Thên thể loại mới</h4>
+					</div>
+					<div class="modal-body">
+						<h4>Nhập thông tin về thể loại Truyện</h4>
+						<div class="row">
+							<div class="col-lg-12">
+								<form
+									action="${pageContext.request.contextPath}/quan-tri/category/add-update-category"
+									method="post">
+									<div class="form-group">
+										<label>Tên thể loại</label> <input class="form-control"
+											name="name" placeholder="Nhập tên thể loại">
+									</div>
+									<div class="form-group">
+										<label>Giới thiệu</label> <input class="form-control"
+											name="description" placeholder="Nhập giới thiệu về thể loại">
+									</div>
+									<button type="submit" class="btn btn-primary">Thêm thể
+										loại</button>
+
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-right"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+
+
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">
+							<form
+								action="${pageContext.request.contextPath}/quan-tri/category"
+								method="Post">
+								<input type="hidden" name="array_id" value=""> <select
+									id="select-tacvu" class="form-control" disabled>
+									<option value="">Tùy chọn</option>
+									<option value="enable">Kích hoạt</option>
+									<option value="disable">Vô hiệu</option>
+									<option value="delete">Xoá</option>
+								</select>
+							</form>
+						</h3>
+
+
+						<div class="box-tools">
+							<form
+								action="${pageContext.request.contextPath}/quan-tri/category"
+								method="get">
+								<div class="input-group input-group-sm" style="width: 150px;">
+
+									<input type="text" name="tu-khoa"
+										class="form-control pull-right" placeholder="Nhập nội dung">
+
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<i class="fa fa-search"></i>
+										</button>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body table-responsive no-padding">
+						<table class="table table-hover">
+
+							<tr>
+								<th>
+									<button type="button" class="btn btn-primary" id="select_all">All</button>
+									<button type="button" class="btn btn-info"
+										id="disable_select_all" style="display: none;">Hủy</button>
+								</th>
+								<th>STT</th>
+								<th>Tên Thể Loại</th>
+								<th>Số lượng bài viết</th>
+								<th>Trạng Thái</th>
+								<th></th>
+							</tr>
+							<c:set var="cate" value="${categoryMess}" />
+							<c:forEach items="${cate.listCategorys}" var="us"
+								varStatus="status">
 								<tr>
-									<td><a
-										href="${pageContext.request.contextPath}/quan-tri/category"
-										class="btn btn-warning" title="Trở lại"> <i
-											class="fa  fa-arrow-left fa-1x"></i>
-									</a></td>
+									<td style="width: 5%; text-align: center;"><input
+										class="checkbox all" type="checkbox" name="check[]"
+										id="${us.id }"></td>
+									<td>${status.index + 1}</td>
+									<td>${us.name}</td>
 									<td>
-										<form
-											action="${pageContext.request.contextPath}/quan-tri/category">
-											<div style="float: left">
-												<input class="form-control" type="text" name="tu-khoa"
-													placeholder="Nhập nội dung tìm kiếm">
-											</div>
-											<div style="margin-left: 5%; float: left">
-												<input class="btn btn-primary" type="submit"
-													value="Tìm kiếm">
-											</div>
-
-										</form>
-									</td>
-
-
-									<td><a href="" id="them" class="btn btn-primary"
-										data-toggle="modal" data-target="#themTheLoaiMoi">Thêm Mới</a></td>
-									<td>
-										<button type="submit" class="btn btn-primary" id="select_all">Chọn
-											tất cả</button>
-										<button type="submit" class="btn btn-info"
-											id="disable_select_all" style="display: none;">Hủy
-											chọn</button>
-
-									</td>
-
-									<td>
-										<form
-											action="${pageContext.request.contextPath}/quan-tri/ql-the-loai-truyen/tac-vu"
-											method="Post">
-											<input type="hidden" name="array_id" value=""> <select
-												id="select-tacvu" class="form-control" disabled>
-												<option value="">Tùy chọn</option>
-												<option value="enable">Kích hoạt</option>
-												<option value="disable">Vô hiệu</option>
-												<option value="delete">Xoá</option>
-											</select>
-										</form>
-									</td>
-
-
-									<td>
-										<button class="btn btn-danger disabled">Hiện có :
-											${listTheLoaiTruyen.totalRecords } Thể loại</button>
-									</td>
-
-								</tr>
-							</tbody>
-						</table>
-						<table class="table table-striped table-bordered table-hover"
-							id="dataTables-category">
-							<thead>
-								<tr>
-									<th></th>
-									<th>STT</th>
-									<th>Tên Thể Loại</th>
-									<th>Số lượng bài viết</th>
-									<th>Trạng Thái</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<%-- <tr class="odd gradeX">
-									<td style="width: 5%; text-align: center;">
-										<div class="checkbox">
-											${cate.message }
-										</div>
-									</td>
-								</tr> --%>
-
-								<c:forEach items="${categoryMess}" var="us"
-									varStatus="status">
-									<tr class="odd gradeX">
-										<td style="width: 5%; text-align: center;">
-											<div class="checkbox">
-												<label> <input class="checkbox all" type="checkbox"
-													name="check[]" id="${us.id }">
-												</label>
-											</div>
-										</td>
-										<td style="padding-top: 2%;">${status.index + 1}</td>
-										<td style="padding-top: 2%;">${us.name}</td>
-										<td style="padding-top: 2%;">
-											<%-- <c:forEach
+										<%-- <c:forEach
 												items="${slTruyen}" var="sl">
 												<c:if test="${sl.key==us.id }">
 													${sl.value }
 												</c:if>
 											</c:forEach> --%>
-										</td>
-										<td style="padding-top: 2%;"><c:if
-												test="${us.locked == true}">
-												Enable
-											</c:if> <c:if test="${us.locked == false}">
-												Disable
-											</c:if></td>
-										<td style="width: 15%; text-align: center; padding-top: 1%;">
-											<a class="btn btn-primary btn-circle" title="Tất cả Truyện"
-											href="${pageContext.request.contextPath}/quan-tri/abcd?id=${us.url}">
-												<i class="fa fa-list-ul"></i>
-										</a> <a data-toggle="modal" data-target="#formSuaTheLoai"
-											class="btn btn-success btn-circle cap-nhat-the-loai"
-											title="Chỉnh sửa thể loại" id="${us.id}"> <i
-												class="fa  fa-edit"></i>
-										</a> <a class="btn btn-danger btn-circle xoa-the-loai"
-											title="Xóa thể loại" id="${us.id }" data-toggle="modal"
-											data-target="#formXoaTheLoai"> <i class="fa fa-close"></i>
-										</a>
-										</td>
-									</tr>
-								</c:forEach>
-
-							</tbody>
+									</td>
+									<td><c:if test="${us.locked == true}">
+											<span class="label label-success">Enable</span>
+										</c:if> <c:if test="${us.locked == false}">
+											<span class="label label-warning">Disable</span>
+										</c:if></td>
+									<td style="width: 15%; padding-top: 1%;"><a
+										class="btn btn-primary btn-sm" title="Tất cả Truyện"
+										href="${pageContext.request.contextPath}/quan-tri/abcd?id=${us.id}">
+											<i class="fa fa-list-ul"></i>
+									</a> <a data-toggle="modal" data-target="#formSuaTheLoai"
+										class="btn btn-success btn-sm cap-nhat-the-loai"
+										title="Chỉnh sửa thể loại" id="${us.id }"> <i
+											class="fa  fa-edit"></i>
+									</a> <a class="btn btn-danger btn-sm xoa-the-loai"
+										title="Xóa thể loại" id="${us.id }" data-toggle="modal"
+										data-target="#formXoaTheLoai"> <i class="fa fa-close"></i>
+									</a></td>
+								</tr>
+							</c:forEach>
 						</table>
-					</div>
-					<%-- <div class="grid_3 grid_5 agileits">
-						<c:if test="${cate.totalCategorys/2 > 1}">
-							<div class="col-md-6">
-								<nav>
-									<ul class="pagination pagination-lg">
-										
-											
-												<li><a href="category?pageNo=1"
-													class="nav-item">1</a></li>
-											
-											
-												<li><a><span> ... </span></a></li>
-											
-									
-									</ul>
-								</nav>
-							</div>
-						</c:if>
-					</div>
- --%>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="modal fade" id="themTheLoaiMoi" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="col-lg-12">
-				<div class="panel panel-green">
-
-					<div class="panel-heading">
-						<h4>Thêm Thể Loại Truyện Mới</h4>
-					</div>
-					<div class="panel-body">
-						<h4>Nhập thông tin về thể loại Truyện</h4>
-						<div class="row">
-							<div class="col-lg-12">
-								<form
-									action="${pageContext.request.contextPath}/quan-tri/ql-the-loai-truyen/them-the-loai"
-									method="post">
-									<div class="form-group">
-										<label>Tên thể loại Truyện</label> <input class="form-control"
-											name="tenTheLoai" placeholder="Nhập tên thể loại Truyện">
-									</div>
-									<div class="form-group">
-										<label>Giới thiệu</label> <input class="form-control"
-											name="gioiThieu" placeholder="Nhập giới thiệu về thể loại">
-									</div>
-									<button type="submit" class="btn btn-primary">Thêm thể
-										loại</button>
-								</form>
-							</div>
+						<div class="grid_3 grid_5 agileits">
+							<c:if test="${cate.totalCategorys/5 >= 1}">
+								<div class="col-md-6">
+									<nav>
+										<ul class="pagination pagination-lg">
+											<c:forEach begin="0" end="${cate.totalCategorys/15}"
+												var="index">
+												<li><a href="category?pageNo=${index +1}"
+													class="nav-item">${index +1}</a></li>
+											</c:forEach>
+										</ul>
+									</nav>
+								</div>
+							</c:if>
 						</div>
 					</div>
-					<div class="clearfix"></div>
+					<!-- /.box-body -->
 				</div>
+				<!-- /.box -->
 			</div>
-			<!-- //Modal content-->
 		</div>
-	</div>
+	</section>
+	<!-- /.content -->
+
 	<div class="modal fade" id="formSuaTheLoai" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -269,28 +238,28 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<form
-									action="${pageContext.request.contextPath}/quan-tri/ql-the-loai-truyen/sua-the-loai"
+									action="${pageContext.request.contextPath}/quan-tri/category/add-update-category"
 									method="post">
 									<div class="form-group">
-										<label>ID tác giả:</label> <input class="form-control"
-											name="idTheLoai" id="idTheLoai" readonly>
+										<label>ID thể loại:</label> <input class="form-control"
+											name="id" id="id" readonly>
 									</div>
 									<div class="form-group">
-										<label>Tên thể loại Truyện</label> <input class="form-control"
-											name="tenTheLoai" id="tenTheLoai"
+										<label>Tên thể loại</label> <input class="form-control"
+											name="name" id="name"
 											placeholder="Nhập lại tên thể loại truyện">
 									</div>
 									<div class="form-group">
 										<label>Giới thiệu</label> <input class="form-control"
-											name="gioiThieu" id="gioiThieu"
+											name="description" id="description"
 											placeholder="Nhập lại giới thiệu về thể loại truyện">
 									</div>
 									<div class="form-group">
 
 										<label class="radio-inline"> <input type="radio"
-											name="trangThai" id="trangThai1" value="1"> Enable
+											name="locked" id="trangThai1" value="true"> Enable
 										</label> <label class="radio-inline"> <input type="radio"
-											name="trangThai" id="trangThai0" value="0"> Disable
+											name="locked" id="trangThai0" value="0"> Disable
 										</label>
 
 									</div>
@@ -321,21 +290,20 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<form
-									action="${pageContext.request.contextPath}/quan-tri/ql-the-loai-truyen/xoa-the-loai"
+									action="${pageContext.request.contextPath}/quan-tri/category/xoa-the-loai"
 									method="post">
 									<div class="form-group">
 										<label>Bạn có chắc muốn xóa bỏ thể loại truyện: </label>
-										<h4 id="tenTheLoai"></h4>
+										<h4 id="name"></h4>
 									</div>
 									<!-- background: transparent; -->
-									<input type="text" name="tenTheLoai" id="tenTheLoai"
+									<input type="text" name="name" id="name"
 										style="width: 0px; height: 0px; border: none; background: transparent;" />
-									<input type="text" name="idTheLoai" id="idTheLoai"
+									<input type="text" name="id" id="id"
 										style="width: 0px; height: 0px; border: none; background: transparent;" />
 									<div class="form-group">
-										<label>Nhấn "Đồng ý" để xác nhận xóa thể loại và tất
-											cả các truyện của thể loại.<br> Bạn có chắc chắn đây là
-											lựa chọn của bạn!
+										<label>Nhấn "Đồng ý" để xác nhận xóa thể loại.<br>
+											Bạn có chắc chắn đây là lựa chọn của bạn!
 										</label>
 									</div>
 									<button type="submit" class="btn btn-danger">Đồng ý</button>
@@ -412,6 +380,7 @@
 				}
 				//console.log(array_id.length);
 			});
+		});
 			
 		$("#select-tacvu").change(()=>{
             let value = $('#select-tacvu').val();
@@ -480,16 +449,16 @@
 			let id = $(this).attr("id");
 			$.ajax(
 				{
-					url : "${pageContext.request.contextPath}/quan-tri/ql-the-loai-truyen/ajax",
-					type : "POST",
+					url : "${pageContext.request.contextPath}/quan-tri/category/get-category-by-id",
+					type : "GET",
 					dataType : "json",
 					data : {id : id},
 					success : function(data)
 					{
-						var tenTheLoai = " "+ data.tenTheLoai;
-						$("#formXoaTheLoai #tenTheLoai").html(tenTheLoai);
-						$("#formXoaTheLoai #idTheLoai").val(data.id);
-						$("#formXoaTheLoai #tenTheLoai").val(data.tenTheLoai);
+						var tenTheLoai = " "+ data.name;
+						$("#formXoaTheLoai #name").html(tenTheLoai);
+						$("#formXoaTheLoai #id").val(data.id);
+						$("#formXoaTheLoai #name").val(data.name);
 						
 					},
 					error : function(error)
@@ -498,47 +467,38 @@
 					}
 				});
 		});
-		$(document).on('click','.cap-nhat-the-loai',function() {
+		
+		
+		
+		$(document).ready(function() {
+			$(document).on('click','.cap-nhat-the-loai',function() {
 			let id = $(this).attr("id");
 			$.ajax(
-				{
-					url : "${pageContext.request.contextPath}/quan-tri/ql-the-loai-truyen/ajax",
-					type : "POST",
-					dataType : "json",
-					data : {id : id},
-					success : function(data)
 					{
-						$("#formSuaTheLoai #idTheLoai").val(data.id);
-						$("#formSuaTheLoai #tenTheLoai").val(data.tenTheLoai);
-						$("#formSuaTheLoai #gioiThieu").val(data.gioiThieu);
-									
-						if (data.trangThai == "1") {
-							$("#formSuaTheLoai #trangThai1").prop("checked","true");
-						} else
-							$("#formSuaTheLoai #trangThai0").prop("checked","true");
-					},
-					error : function(error)
-					{
-						alert(error);
-					}
+						url : "${pageContext.request.contextPath}/quan-tri/category/get-category-by-id",
+						type : "GET",
+						dataType : "json",
+						data : {id : id},
+						success : function(data)
+						{
+							$("#formSuaTheLoai #id").val(data.id);
+							$("#formSuaTheLoai #name").val(data.name);
+							$("#formSuaTheLoai #description").val(data.description);
+										
+							if (data.locked == true) {
+								$("#formSuaTheLoai #trangThai1").prop("checked","true");
+							} else
+								$("#formSuaTheLoai #trangThai0").prop("checked","true");
+						},
+						error : function(error)
+						{
+							alert(error);
+						}
+					});
 				});
-		});
-	});
+			});
     
 	</script>
-	<script>
-            $(document).ready(function() {
-                $('#dataTables-category').DataTable({
-                        responsive: true
-                });
-            });
-        </script>
-	<!-- DataTables JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/template/admin/js/dataTables/jquery.dataTables.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/template/admin/js/dataTables/dataTables.bootstrap.min.js"></script>
-
 
 </body>
 </html>

@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<div class="copyright-w3layouts py-xl-3 py-2 mt-xl-5 mt-4 text-center">
-	<p>
-		© 2019 Nhóm Truyện . Toàn _ Việt | Design by <a
-			href="#"> Nhóm Truyện</a>
-	</p>
-</div>
+	pageEncoding="UTF-8"%>
+
+<footer class="main-footer">
+	<div class="pull-right hidden-xs">
+		<b>Version</b> 2.4.0
+	</div>
+	<strong>Copyright &copy; 2019-2020 <a
+		href="https://adminlte.io">By:	︵✰ʑDɱøηкїɗʑ® </a>.
+	</strong> All rights reserved.
+</footer>
