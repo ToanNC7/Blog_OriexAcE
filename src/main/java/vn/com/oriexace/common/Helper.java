@@ -15,6 +15,6 @@ public class Helper {
 		return null;
 	}
 	public static void main(String[] args) {
-		System.out.println(pathVariableString("Sinh Viên Công Nghệ Thông Tin trƯờnG Đh qUy Nhơn"));
+		//System.out.println(pathVariableString("Sinh Viên Công Nghệ Thông Tin trƯờnG Đh qUy Nhơn"));
 	}
 }

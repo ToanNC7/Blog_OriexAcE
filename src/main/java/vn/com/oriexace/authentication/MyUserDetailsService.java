@@ -34,13 +34,13 @@ public class MyUserDetailsService implements UserDetailsService {
         }
          
         // [USER,ADMIN,..]
-        Set<String> roles= user.get().getRole().stream().map(Role::getName).collect(Collectors.toSet());
+        Set<Role> roles= user.get().getRole();
          
         List<GrantedAuthority> grantList= new ArrayList<GrantedAuthority>();
         if(roles!= null)  {
-            for(String role: roles)  {
+            for(Role role: roles)  {
                 // ROLE_USER, ROLE_ADMIN,..
-                GrantedAuthority authority = new SimpleGrantedAuthority(role);
+                GrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
                 grantList.add(authority);
             }
         }        
