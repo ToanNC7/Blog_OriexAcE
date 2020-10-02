@@ -30,8 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-		// SÃ©t Ä‘áº·t dá»‹ch vá»¥ Ä‘á»ƒ tÃ¬m kiáº¿m User trong Database.
-		// VÃ  sÃ©t Ä‘áº·t PasswordEncoder.
+		// Sét đặt dịch vụ để tìm kiếm User trong Database.
+		// Và sét đặt PasswordEncoder.
 		auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
 
 	}
@@ -41,25 +41,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().disable();
 
-		// CÃ¡c trang khÃ´ng yÃªu cáº§u login
+		// Các trang không yêu cầu login
 		http.authorizeRequests().antMatchers("/*"/* , "/welcome", "/login", "/logout" */).permitAll();
 
-		// Trang /userInfo yÃªu cáº§u pháº£i login vá»›i vai trÃ² USER hoáº·c ADMIN.
-		// Náº¿u chÆ°a login, nÃ³ sáº½ redirect tá»›i trang /login.
+		// Trang /userInfo yêu cầu phải login với vai trò USER hoặc ADMIN.
+		// Nếu chưa login, nó sẽ redirect tới trang /login.
 		//http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
-		// Trang chá»‰ dÃ nh cho ADMIN
+		// Trang chỉ dành cho ADMIN
 		http.authorizeRequests().antMatchers("/quan-tri/*").access("hasRole('ROLE_ADMIN')");
 
-		// Khi ngÆ°á»�i dÃ¹ng Ä‘Ã£ login, vá»›i vai trÃ² XX.
-		// NhÆ°ng truy cáº­p vÃ o trang yÃªu cáº§u vai trÃ² YY,
-		// Ngoáº¡i lá»‡ AccessDeniedException sáº½ nÃ©m ra.
+		// Khi người dùng đã login, với vai trò XX.
+		// Nhưng truy cập vào trang yêu cầu vai trò YY,
+		// Ngoại lệ AccessDeniedException sẽ ném ra.
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
-		// Cáº¥u hÃ¬nh cho Login Form.
+		// Cấu hình cho Login Form.
 		http.authorizeRequests().and().formLogin()//
 
-				// Submit URL cá»§a trang login
+				// Submit URL của trang login
 				.loginProcessingUrl("/logins") // Submit URL
 				.loginPage("/login")//
 				.defaultSuccessUrl("/quan-tri")//
@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")//
 				.passwordParameter("password")
 
-				// Config cho Logout Page.
+				// Cấu hình cho Logout Page.
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/index");
 
 	}

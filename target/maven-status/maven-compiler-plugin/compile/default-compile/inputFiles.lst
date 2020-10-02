@@ -4,7 +4,6 @@ D:\Dev\Git\GitHub\Blog_OriexAcE\src\main\java\vn\com\oriexace\config\WebMvcConfi
 D:\Dev\Git\GitHub\Blog_OriexAcE\src\main\java\vn\com\oriexace\repository\UserRepository.java
 D:\Dev\Git\GitHub\Blog_OriexAcE\src\main\java\vn\com\oriexace\entity\Category.java
 D:\Dev\Git\GitHub\Blog_OriexAcE\src\main\java\vn\com\oriexace\entity\Post.java
-D:\Dev\Git\GitHub\Blog_OriexAcE\src\main\java\vn\com\oriexace\controller\admin\PostController.java
 D:\Dev\Git\GitHub\Blog_OriexAcE\src\main\java\vn\com\oriexace\entity\Comment.java
 D:\Dev\Git\GitHub\Blog_OriexAcE\src\main\java\vn\com\oriexace\authentication\MyUserDetailsService.java
 D:\Dev\Git\GitHub\Blog_OriexAcE\src\main\java\vn\com\oriexace\controller\admin\HomeController.java
