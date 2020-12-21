@@ -1,6 +1,5 @@
 <%-- Created by IntelliJ IDEA. User: ToanNC7 Date: 12/21/2020 Time: 17:10 To
 change this template use File | Settings | File Templates. --%>
-<%@ include file="/common/taglib.jsp" %>
 <div class="central-meta postbox">
   <span class="create-post">Create post</span>
   <div class="new-postbox">
