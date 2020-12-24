@@ -4,18 +4,13 @@
   Date: 12/21/2020
   Time: 16:32
   To change this template use File | Settings | File Templates.
---%>
-<div class="side-panel">
+--%>	<div class="side-panel">
     <h4 class="panel-title">General Setting</h4>
     <form method="post">
         <div class="setting-row">
             <span>use night mode</span>
-            <input type="checkbox" id="nightmode1" />
-            <label
-                    for="nightmode1"
-                    data-on-label="ON"
-                    data-off-label="OFF"
-            ></label>
+            <input type="checkbox" id="nightmode1"/>
+            <label for="nightmode1" data-on-label="ON" data-off-label="OFF"></label>
         </div>
         <div class="setting-row">
             <span>Notifications</span>
@@ -63,20 +58,12 @@
         <div class="setting-row">
             <span>Delete history</span>
             <input type="checkbox" id="switch101" />
-            <label
-                    for="switch101"
-                    data-on-label="ON"
-                    data-off-label="OFF"
-            ></label>
+            <label for="switch101" data-on-label="ON" data-off-label="OFF"></label>
         </div>
         <div class="setting-row">
             <span>Expose author name</span>
             <input type="checkbox" id="switch111" />
-            <label
-                    for="switch111"
-                    data-on-label="ON"
-                    data-off-label="OFF"
-            ></label>
+            <label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
         </div>
     </form>
-</div>
+</div><!-- side panel -->

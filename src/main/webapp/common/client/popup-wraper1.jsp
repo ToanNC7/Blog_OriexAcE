@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ToanNC7
-  Date: 12/21/2020
-  Time: 16:39
-  To change this template use File | Settings | File Templates.
---%>
+
 <div class="popup-wraper1">
     <div class="popup direct-mesg">
         <span class="popup-closed"><i class="ti-close"></i></span>
@@ -14,7 +8,7 @@
             </div>
             <div class="send-message">
                 <form method="post" class="c-form">
-                    <input type="text" placeholder="Sophia" />
+                    <input type="text" placeholder="Sophia">
                     <textarea placeholder="Write Message"></textarea>
                     <button type="submit" class="main-btn">Send</button>
                 </form>
@@ -22,7 +16,7 @@
                     <div class="uploadimage">
                         <i class="fa fa-image"></i>
                         <label class="fileContainer">
-                            <input type="file" />
+                            <input type="file">
                         </label>
                     </div>
                     <span title="add icon" class="em em-expressionless"></span>
@@ -41,8 +35,8 @@
                         <i class="em em-stuck_out_tongue"></i>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-</div>
-<!-- send message popup -->
+</div><!-- send message popup -->
