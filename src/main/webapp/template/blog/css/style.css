@@ -120,7 +120,7 @@ header#inner-navigation {
 }
 
 #inner-navigation .navbar.navbar-sticky-in {
-    box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 7px #36eb33;
     transition: all ease-in-out 0.5s;
 }
 
