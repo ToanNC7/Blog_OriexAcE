@@ -19,7 +19,7 @@
 
             <div id="navbar" class="navbar-nav-wrapper text-center">
                 <ul class="nav navbar-nav navbar-right" id="responsive-menu">
-                    <li class="active"><a href="#">Home <i class="fa fa-angle-down"></i></a>
+                    <li class="active"><a href="#">Home</a>
                     </li>
 
                     <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>

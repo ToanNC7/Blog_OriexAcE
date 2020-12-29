@@ -12,25 +12,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <dec:head/>
+    <title>Blog NaoT 97</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/template/blog/images/favicon.png">
-
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/template/blog/css/bootstrap.min.css" rel="stylesheet"
           type="text/css">
-
     <!--Default CSS-->
     <link href="${pageContext.request.contextPath}/template/blog/css/default.css" rel="stylesheet" type="text/css">
-
     <!--Custom CSS-->
     <link href="${pageContext.request.contextPath}/template/blog/css/style.css" rel="stylesheet" type="text/css">
-
     <!--Plugin CSS-->
     <link href="${pageContext.request.contextPath}/template/blog/css/plugin.css" rel="stylesheet" type="text/css">
-
     <!--Font Icons-->
     <link href="${pageContext.request.contextPath}/template/blog/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <dec:head/>
 </head>
 <body class="home-1">
 <!--PRELOADER-->
