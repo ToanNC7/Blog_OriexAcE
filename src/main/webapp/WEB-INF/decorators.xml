@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/masterPage">
-	<decorator name="trang-chu" page="client.jsp">
+	<decorator name="trang-chu" page="blog.jsp">
 		<pattern>/*</pattern>
 	</decorator>
 
