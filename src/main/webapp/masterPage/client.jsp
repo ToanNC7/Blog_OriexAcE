@@ -33,11 +33,10 @@
     <%@ include file="/common/client/themelayout/responsive-header.jsp" %>
     <%@ include file="/common/client/themelayout/topbar-stick.jsp" %>
     <%@ include file="/common/client/themelayout/fixed-sidebar-right.jsp" %>
-    <%@ include file="/common/client/themelayout/fixed-sidebar-left.jsp" %>
+
     <dec:body/>
     <%@ include file="/common/client/footer.jsp" %>
 </div>
-<%@ include file="/common/client/side-panel.jsp" %>
 <%@ include file="/common/client/popup-wraper2.jsp" %>
 <%@ include file="/common/client/popup-wraper3.jsp" %>
 <%@ include file="/common/client/popup-wraper1.jsp" %>

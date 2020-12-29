@@ -3,11 +3,6 @@
         <a title="" href="newsfeed.html"><img src="images/logo.png" alt=""></a>
     </div>
     <div class="top-area">
-        <div class="main-menu">
-					<span>
-						<i class="fa fa-braille"></i>
-					</span>
-        </div>
         <div class="top-search">
             <form method="post" class="">
                 <input type="text" placeholder="Search People, Pages, Groups etc">
