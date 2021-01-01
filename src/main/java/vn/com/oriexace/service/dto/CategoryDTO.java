@@ -1,11 +1,11 @@
 package vn.com.oriexace.service.dto;
 
-import javax.persistence.Column;
-
+import lombok.Data;
 import vn.com.oriexace.entity.Category;
 
+@Data
 public class CategoryDTO {
-	private Long id;
+	private String id;
 
 	private String name;
 
@@ -28,46 +28,5 @@ public class CategoryDTO {
 		this.url=category.getUrl();
 		this.locked=category.isLocked();
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public boolean isLocked() {
-		return locked;
-	}
-
-	public void setLocked(boolean locked) {
-		this.locked = locked;
-	}
-	
 	
 }

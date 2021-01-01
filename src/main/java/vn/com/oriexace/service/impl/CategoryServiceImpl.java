@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public void saveAndUpdate(HttpServletRequest request, Principal principal) {
 		Category category = new Category();
 		
-		category.setId((request.getParameter("id") == null) ? null : Long.parseLong(request.getParameter("id")));
+		category.setId((request.getParameter("id") == null) ? null : request.getParameter("id"));
 		
 		category.setName(request.getParameter("name"));
 		category.setUrl(Helper.pathVariableString(request.getParameter("name")));
